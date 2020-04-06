@@ -15,10 +15,16 @@
     color: white;
     text-decoration: none;
   }
-
 }
 
 .button:hover{
   opacity: 1;
+}
 
+.next a{
+  text-decoration: underline;
+  color: black;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }

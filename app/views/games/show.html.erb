@@ -2,30 +2,43 @@
 
   <div class="head">
     <h1>SPIELÜBERSICHT</h1>
-    <p>Hier warten bis ihr an der Reihe seid</p>
+    <p>Hallo Spieler   von <%= @game.name%>! Hier warten bis ihr an der Reihe seid</p>
   </div>
 
-  <p>Wörter noch im Topf</p>
-  <div class="box">
 
-    <div class="box-item">
+
+    <div class="box">
+       <p>Wörter noch im Topf</p>
       <% if  @words_left != nil %>
         <p><strong><%= @words_left.count %></strong></p>
       <% else %>
         <p><strong>0</strong></p>
       <% end %>
     </div>
-    <div class="box-item">
+
+    <div class="box">
+      <p>Spielrunde</p>
+      <p><strong><%= @game.round %></strong></p>
+    </div>
+
+    <div class="box">
+      <p>Reload</p>
       <%= link_to game_path(@game) do %>
         <p><i class="fas fa-sync-alt"></i>  </p>
       <% end %>
     </div>
-  </div>
+
 
   <div class="button">
   <%= link_to game_words_path(@game) do %>
     Ich bin dran
   <% end %>
+  </div>
+
+  <div class='next'>
+    <%= link_to root_path(@game) do %>
+        Neues Spiel erstellen
+    <% end %>
   </div>
 
 </div>

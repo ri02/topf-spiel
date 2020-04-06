@@ -6,8 +6,8 @@
   </div>
 
   <%= simple_form_for [@game, @word] do |f| %>
-  <% @game.number.times do %>
-    <%= f.input :text, label: 'Hirnpfurz' %>
+  <% @i.each do |i|%>
+    <%= f.input :text, label: 'Hirnpfurz', as: :text, input_html: { multiple: true } %>
     <% end %>
     <%= f.submit 'Rein in den Topf', class: 'button' %>
   <% end %>

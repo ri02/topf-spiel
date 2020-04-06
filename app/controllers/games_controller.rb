@@ -25,6 +25,7 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
+    @game.increment!(:round)
     @words = Word.where(game_id: params[:id])
     @words.update(status: true)
     redirect_to game_path(@game)

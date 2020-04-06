@@ -11,24 +11,26 @@ class WordsController < ApplicationController
     @game = Game.find(params[:game_id])
     @words = Word.where(game_id: params[:game_id])
     @total = @game.number * @game.players
+    @i = (1..@game.number).to_a
     redirect_to game_path(@game) if @total == @words.count
   end
 
   def create
     @game = Game.find(params[:game_id])
     @words = Word.where(game_id: params[:game_id])
-    @word = Word.new(word_params)
-    @word.game_id = params[:game_id]
-    @total = @game.number * @game.players
-    if  @total > @words.count
-      if @word.save
-      redirect_to game_path(@game)
-      else
-      render :new
-      end
-    else
-      redirect_to new_game_word_path(@game)
+    word_params[:text].each do |word|
+      @word = Word.new(text: word)
+      @word.game_id = params[:game_id]
+      @total = @game.number * @game.players
+
+
+        if @word.save
+
+        else
+        render :new
+        end
     end
+    redirect_to game_path(@game)
   end
 
 
@@ -44,6 +46,6 @@ class WordsController < ApplicationController
   private
 
   def word_params
-    params.require(:word).permit(:text, :id)
+    params.require(:word).permit(:id, text:[])
   end
 end

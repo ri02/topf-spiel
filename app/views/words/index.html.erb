@@ -1,29 +1,36 @@
-<h1>Words#index</h1>
-<p>Find me in app/views/words/index.html.erb</p>
+<div class="container ">
 
-<% if @word != nil%>
-  <%= @word.text %>
-  <%= Time.now %>
+  <div class="head">
+    <h1>TOPFSPIEL</h1>
+    <p> Perfom & Deliver </p>
+  </div>
 
-  <%= simple_form_for [@game, @word] do |f| %>
-    <%= f.input :id , value: @word.id, as: :hidden %>
-    <%= f.button :submit,  'gelöst' %>
+
+  <% if @word != nil%>
+    <div class="card">
+      <h2><%= @word.text %></h2>
+    </div>
   <% end %>
 
-  <%= link_to game_path(@game) do %>
-    <button>
-      nächster Spieler
-    </button>
-  <% end %>
 
+  <% if @word != nil%>
+      <%= simple_form_for [@game, @word] do |f| %>
+        <%= f.input :id , value: @word.id, as: :hidden %>
+        <%= f.submit 'gelöst' , class: 'button solved'%>
+      <% end %>
+    <div class='next'>
+      <%= link_to game_path(@game) do %>
+          nächster Spieler
+      <% end %>
+    </div>
   <% else %>
-  <%= simple_form_for [@game] do |f| %>
-    <%= f.input :id , value: 0, as: :hidden %>
-    <%= f.button :submit,  'Neue Runde' %>
+      <%= simple_form_for [@game] do |f| %>
+        <%= f.input :id , value: 0, as: :hidden %>
+        <%= f.submit 'Neue Runde', class: 'button' %>
+      <% end %>
   <% end %>
 
-<% end %>
-
+ </div>
 
 
 
