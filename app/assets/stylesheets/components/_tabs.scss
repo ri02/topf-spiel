@@ -1,6 +1,6 @@
-.nav-tabs .nav-link a {
-  text-decoration: none
-
+.nav-item .nav-link{
+  color: red !important;
+  margin: 0px
 }
 
 .nav-tabs .nav-link.active{
@@ -14,3 +14,19 @@
   opacity: 1;
   border-bottom: 3px solid #555555;
 }
+
+
+.game {
+  margin: 1rem 16px;
+  display: flex;
+  justify-content: space-between;
+  p {
+  margin: 0;
+  color: black;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
