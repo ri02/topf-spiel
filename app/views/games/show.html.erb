@@ -7,19 +7,30 @@
 
 
 
-    <div class="box">
-       <p>Wörter noch im Topf</p>
-      <% if  @words_left != nil %>
-        <p><strong><%= @words_left.count %></strong></p>
-      <% else %>
-        <p><strong>0</strong></p>
-      <% end %>
-    </div>
+
+
+    <% if @game.words.count < (@game.number * @game.players)%>
+      <div class="box">
+       <p>Mitspielerberiffe fehlen noch</p>
+        <p><strong><%= (@game.number * @game.players) - @game.words.count%></strong></p>
+      </div>
+    <% else %>
+      <div class="box">
+         <p>Bergiffe noch im Topf</p>
+        <% if  @words_left != nil %>
+          <p><strong><%= @words_left.count %></strong></p>
+        <% else %>
+          <p><strong>0</strong></p>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class="box">
       <p>Spielrunde</p>
       <p><strong><%= @game.round %></strong></p>
     </div>
+
+
 
     <div class="box">
       <p>Reload</p>

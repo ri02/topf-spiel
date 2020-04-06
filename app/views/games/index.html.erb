@@ -29,13 +29,22 @@
        <div class="tab-pane fade" id="nav-old" role="tabpanel" aria-labelledby="nav-old-tab">
          <% unless @games.nil? %>
            <% @games.each do |game|%>
-             <%= link_to game_path(game) do %>
-               <div class="game">
-                <p><%= game.name %></p>
-                <p><%= game.created_at.strftime("%D")%></p>
-               </div>
-             <% end %>
-           <% end %>
+            <% if game.words.count < (game.number * game.players)%>
+              <%= link_to new_game_word_path(game) do %>
+                <div class="game">
+                  <p><%= game.name %></p>
+                  <p><%= game.created_at.strftime("%D")%></p>
+                </div>
+              <% end %>
+             <%else %>
+                <%= link_to game_path(game) do %>
+                  <div class="game">
+                    <p><%= game.name %></p>
+                    <p><%= game.created_at.strftime("%D")%></p>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
          <% end %>
        </div>
      </div>
