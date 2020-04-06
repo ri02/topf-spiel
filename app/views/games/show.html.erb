@@ -1,0 +1,19 @@
+<p>waiting page</p>
+
+<%= link_to game_words_path(@game) do %>
+  <button>
+    Los
+  </button>
+<% end %>
+
+<p>words total</p>
+<%= @game.number %>
+
+<p>words left</p>
+<% if  @words_left != nil %>
+<%= @words_left.count %>
+<% else %>
+0
+<% end %>
+
+

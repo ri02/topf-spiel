@@ -1,0 +1,45 @@
+<div class="container justfiy-content-center">
+  <div class="row text-align">
+    <div class="col-12 col-lg-6">
+
+
+      <div class="head">
+
+        <h1>HUTSPIEL</h1>
+        <p> Beginne ein neues Spiel oder mache bei einem schon bestehenden Spiel mit </p>
+
+      </div>
+
+
+
+      <div class="card">
+        <h3>Erstelle ein neues Spiel</h3>
+
+
+        <%= simple_form_for(@game) do |f| %>
+          <%= f.input :name %>
+          <%= f.input :number %>
+          <%= f.submit %>
+        <% end %>
+
+      </div>
+
+    </div>
+
+
+    <div class="col-12 col-lg-6">
+
+      <div class="card">
+        <h3>Mache mit</h3>
+
+        <% @games.each do |game|%>
+          <%= link_to game_path(game) do %>
+            <li><%= game.name %></li>
+          <% end %>
+        <% end %>
+
+      </div>
+
+    </div>
+  </div>
+</div>

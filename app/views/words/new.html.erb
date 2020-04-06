@@ -1,0 +1,25 @@
+<h1>Words#new</h1>
+<p>Find me in app/views/words/new.html.erb</p>
+
+<% if @game.number > @words.count %>
+
+<%= simple_form_for [@game, @word] do |f| %>
+  <%= f.input :text %>
+  <%= f.submit %>
+<% end %>
+
+<% end %>
+
+<%= @words.count %>
+
+<%if @game.number - @words.count != 0  %>
+  <p>Words missing</p>
+  <%= @game.number - @words.count %>
+<% else %>
+  <%= link_to game_path(@game) do %>
+    <button>
+      Los
+    </button>
+  <% end %>
+<% end %>
+

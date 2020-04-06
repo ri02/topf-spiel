@@ -1,0 +1,30 @@
+<h1>Words#index</h1>
+<p>Find me in app/views/words/index.html.erb</p>
+
+<% if @word != nil%>
+  <%= @word.text %>
+  <%= Time.now %>
+
+  <%= simple_form_for [@game, @word] do |f| %>
+    <%= f.input :id , value: @word.id, as: :hidden %>
+    <%= f.button :submit,  'gelöst' %>
+  <% end %>
+
+  <%= link_to game_path(@game) do %>
+    <button>
+      nächster Spieler
+    </button>
+  <% end %>
+
+  <% else %>
+  <%= simple_form_for [@game] do |f| %>
+    <%= f.input :id , value: 0, as: :hidden %>
+    <%= f.button :submit,  'Neue Runde' %>
+  <% end %>
+
+<% end %>
+
+
+
+
+
