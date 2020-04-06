@@ -21,8 +21,11 @@ class WordsController < ApplicationController
     @word.game_id = params[:game_id]
     @total = @game.number * @game.players
     if  @total > @words.count
-      @word.save!
+      if @word.save
       redirect_to game_path(@game)
+      else
+      render :new
+      end
     else
       redirect_to new_game_word_path(@game)
     end

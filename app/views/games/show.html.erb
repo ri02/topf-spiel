@@ -1,19 +1,38 @@
-<p>waiting page</p>
+<div class="container">
 
-<%= link_to game_words_path(@game) do %>
-  <button>
-    Los
-  </button>
-<% end %>
+  <div class="head">
+    <h1>SPIELÜBERSICHT</h1>
+    <p>Hier warten bis ihr an der Reihe seid</p>
+  </div>
 
-<p>words total</p>
-<%= @game.number %>
+  <p>Wörter noch im Topf</p>
+  <div class="box">
 
-<p>words left</p>
-<% if  @words_left != nil %>
-<%= @words_left.count %>
-<% else %>
-0
-<% end %>
+    <div class="box-item">
+      <% if  @words_left != nil %>
+        <p><strong><%= @words_left.count %></strong></p>
+      <% else %>
+        <p><strong>0</strong></p>
+      <% end %>
+    </div>
+    <div class="box-item">
+      <%= link_to game_path(@game) do %>
+        <p><i class="fas fa-sync-alt"></i>  </p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="button">
+  <%= link_to game_words_path(@game) do %>
+    Ich bin dran
+  <% end %>
+  </div>
+
+</div>
+
+
+
+
+
 
 
