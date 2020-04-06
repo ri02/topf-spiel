@@ -1,0 +1,16 @@
+.nav-tabs .nav-link a {
+  text-decoration: none
+
+}
+
+.nav-tabs .nav-link.active{
+     color: #000000;
+     background-color: #ffffff;
+     border-color: #0e0000 #0e0000 #f8f9fa00;
+
+}
+
+.nav-link.active {
+  opacity: 1;
+  border-bottom: 3px solid #555555;
+}

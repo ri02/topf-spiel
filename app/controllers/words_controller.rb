@@ -17,7 +17,8 @@ class WordsController < ApplicationController
     @words = Word.where(game_id: params[:game_id])
     @word = Word.new(word_params)
     @word.game_id = params[:game_id]
-    if @game.number > @words.count
+    @total = @game.number * @game.players
+    if  @total > @words.count
       @word.save!
       render :new
     else

@@ -1,45 +1,42 @@
 <div class="container justfiy-content-center">
   <div class="row text-align">
-    <div class="col-12 col-lg-6">
+    <div class="col-12">
 
 
       <div class="head">
 
-        <h1>HUTSPIEL</h1>
+        <h1>TOPFSPIEL</h1>
         <p> Beginne ein neues Spiel oder mache bei einem schon bestehenden Spiel mit </p>
 
       </div>
 
+     <nav>
+       <div class="nav nav-tabs" id="nav-tab" role="tablist">
+         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Neues Spiel</a>
+         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Mache mit</a>
 
+       </div>
+     </nav>
+     <div class="tab-content" id="nav-tabContent">
+       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-      <div class="card">
-        <h3>Erstelle ein neues Spiel</h3>
-
-
-        <%= simple_form_for(@game) do |f| %>
-          <%= f.input :name %>
-          <%= f.input :number %>
-          <%= f.submit %>
-        <% end %>
-
-      </div>
-
-    </div>
-
-
-    <div class="col-12 col-lg-6">
-
-      <div class="card">
-        <h3>Mache mit</h3>
-
-        <% @games.each do |game|%>
-          <%= link_to game_path(game) do %>
-            <li><%= game.name %></li>
-          <% end %>
-        <% end %>
-
-      </div>
-
+         <%= simple_form_for(@game) do |f| %>
+           <%= f.input :name, label: 'Spielname' %>
+           <%= f.input :players, label: 'Anzahl der Spieler'  %>
+           <%= f.input :number, label: 'Anzahl der Begiffe pro Spieler'  %>
+           <%= f.submit 'Spiel erstellen', class: 'button' %>
+         <% end %>
+       </div>
+       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+         <% unless @games.nil? %>
+           <% @games.each do |game|%>
+             <%= link_to game_path(game) do %>
+               <li><%= game.name %> <%= game.created_at.strftime("%D")%> </li>
+             <% end %>
+           <% end %>
+         <% end %>
+       </div>
+     </div>
     </div>
   </div>
 </div>
