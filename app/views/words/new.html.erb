@@ -5,13 +5,10 @@
     <p>Hier <strong><%= @game.number %></strong> Begriffe, Person, Bla Bla eingeben  </p>
   </div>
 
-
-
-    <%= simple_form_for [@game, @word] do |f| %>
-    <% @game.number.times do %>
-      <%= f.input :text, label: 'Hirnpfurz' %>
-      <% end %>
-      <%= f.submit 'Rein in den Topf', class: 'button' %>
+  <%= simple_form_for [@game, @word] do |f| %>
+  <% @game.number.times do %>
+    <%= f.input :text, label: 'Hirnpfurz' %>
     <% end %>
-
+    <%= f.submit 'Rein in den Topf', class: 'button' %>
+  <% end %>
 </div>
