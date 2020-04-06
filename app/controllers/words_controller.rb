@@ -10,6 +10,8 @@ class WordsController < ApplicationController
     @word = Word.new
     @game = Game.find(params[:game_id])
     @words = Word.where(game_id: params[:game_id])
+    @total = @game.number * @game.players
+    redirect_to game_path(@game) if @total == @words.count
   end
 
   def create
@@ -20,10 +22,9 @@ class WordsController < ApplicationController
     @total = @game.number * @game.players
     if  @total > @words.count
       @word.save!
-      render :new
-    else
-      raise
       redirect_to game_path(@game)
+    else
+      redirect_to new_game_word_path(@game)
     end
   end
 

@@ -1,25 +1,17 @@
-<h1>Words#new</h1>
-<p>Find me in app/views/words/new.html.erb</p>
+<div class="container">
 
-<% if @game.number > @words.count %>
+  <div class="head">
+    <h1>NEUER BEGRIFF</h1>
+    <p>Hier <strong><%= @game.number %></strong> Begriffe, Person, Bla Bla eingeben  </p>
+  </div>
 
-<%= simple_form_for [@game, @word] do |f| %>
-  <%= f.input :text %>
-  <%= f.submit %>
-<% end %>
 
-<% end %>
 
-<%= @words.count %>
+    <%= simple_form_for [@game, @word] do |f| %>
+    <% @game.number.times do %>
+      <%= f.input :text, label: 'Hirnpfurz' %>
+      <% end %>
+      <%= f.submit 'Rein in den Topf', class: 'button' %>
+    <% end %>
 
-<%if @game.number - @words.count != 0  %>
-  <p>Words missing</p>
-  <%= @game.number - @words.count %>
-<% else %>
-  <%= link_to game_path(@game) do %>
-    <button>
-      Los
-    </button>
-  <% end %>
-<% end %>
-
+</div>
