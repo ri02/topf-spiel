@@ -11,8 +11,8 @@
 
     <% if @game.words.count < (@game.number * @game.players)%>
       <div class="box">
-       <p>Mitspielerberiffe fehlen noch</p>
-        <p><strong><%= (@game.number * @game.players) - @game.words.count%></strong></p>
+       <p><strong>Mitspielerberiffe fehlen noch!</strong></p>
+        <p><strong><%= (@game.number * @game.players) - @game.words.count%>/<%=(@game.number * @game.players)%></strong></p>
       </div>
     <% else %>
       <div class="box">

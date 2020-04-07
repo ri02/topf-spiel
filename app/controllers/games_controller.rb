@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_action :set_game, only: [:show, :update]
+
   def index
     @games = Game.all.order(created_at: :desc)
     @game = Game.new
@@ -18,12 +20,10 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
     @words_left = Word.where(game_id: params[:id]).where(status: true)
   end
 
   def update
-    @game = Game.find(params[:id])
     @game.increment!(:round)
     @words = Word.where(game_id: params[:id])
     @words.update(status: true)
@@ -31,6 +31,10 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def set_game
+    @game = Game.find(params[:id])
+  end
 
   def game_params
     params.require(:game).permit(:name, :number, :id, :players)
