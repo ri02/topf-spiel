@@ -2,13 +2,20 @@
 
   <div class="head">
     <h1>NEUER BEGRIFF</h1>
-    <p>Hier <strong><%= @game.number %></strong> Begriffe, Person, Bla Bla eingeben  </p>
+    <p>Hier <strong><%= @game.number %></strong> Begriffe, Personen, Bla Bla eingeben  </p>
   </div>
 
   <%= simple_form_for [@game, @word] do |f| %>
-  <% @i.each do |i|%>
+  <% @game.number.times do %>
     <%= f.input :text, label: 'Hirnpfurz', as: :text, input_html: { multiple: true } %>
     <% end %>
     <%= f.submit 'Rein in den Topf', class: 'button' %>
   <% end %>
+
+  <div class='next'>
+    <%= link_to game_path(@game) do %>
+        Direkt zur Spielübersicht
+    <% end %>
+  </div>
+
 </div>
