@@ -21,10 +21,17 @@
   opacity: 1;
 }
 
-.next a{
+.next {
+
+  width: 100%;
+  a{
   text-decoration: underline;
   color: black;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+    }
+  p{
+        text-align: right;
+        margin-top: 20px;
+    }
 }
+
+
