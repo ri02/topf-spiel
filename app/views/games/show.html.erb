@@ -15,28 +15,22 @@
         <p><strong><%= (@game.number * @game.players) - @game.words.count%>/<%=(@game.number * @game.players)%></strong></p>
       </div>
     <% else %>
+
+    <div data-controller="counter">
       <div class="box">
-         <p>Bergiffe noch im Topf</p>
-        <% if  @words_left != nil %>
-          <p><strong><%= @words_left.count %>/<%=(@game.number * @game.players)%></strong></p>
-        <% else %>
-          <p><strong>0</strong></p>
-        <% end %>
-      </div>
-    <% end %>
-
-    <div class="box">
-      <p>Spielrunde</p>
-      <p><strong><%= @game.round %></strong></p>
-    </div>
-
-
-
-    <div class="box">
-      <p>Reload</p>
-      <%= link_to game_path(@game) do %>
-        <p><i class="fas fa-sync-alt"></i>  </p>
+           <p>Bergiffe noch im Topf</p>
+          <% if  @words_left != nil %>
+            <p ><strong data-target="counter.count"><%= @words_left.count %></strong><strong>/<%=(@game.number * @game.players)%></strong></p>
+          <% else %>
+            <p><strong>0</strong></p>
+          <% end %>
+        </div>
       <% end %>
+
+      <div class="box">
+        <p>Spielrunde</p>
+        <p><strong data-target="counter.round"><%= @game.round %></strong></p>
+      </div>
     </div>
 
 

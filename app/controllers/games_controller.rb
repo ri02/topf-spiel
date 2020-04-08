@@ -1,12 +1,9 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :update]
+  before_action :set_counter, only: [:show]
 
   def index
     @games = Game.all.order(created_at: :desc)
-    @game = Game.new
-  end
-
-  def new
     @game = Game.new
   end
 
@@ -21,6 +18,11 @@ class GamesController < ApplicationController
 
   def show
     @words_left = Word.where(game_id: params[:id]).where(status: true)
+    @round = @game.round
+    respond_to do |format|
+       format.html
+       format.json { render json: { words_left: @words_left, round: @round} }
+    end
   end
 
   def update
@@ -38,5 +40,9 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:name, :number, :id, :players)
+  end
+
+  def set_counter
+    @words_left = Word.where(game_id: params[:id]).where(status: true)
   end
 end
