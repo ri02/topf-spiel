@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :update]
-  before_action :set_counter, only: [:show]
+  before_action :set_words_left, only: [:show, :update]
 
   def index
     @games = Game.all.order(created_at: :desc)
@@ -17,19 +17,23 @@ class GamesController < ApplicationController
   end
 
   def show
-    @words_left = Word.where(game_id: params[:id]).where(status: true)
-    @round = @game.round
+    @check = ((@game.number * @game.players) > @game.words.count) ? 'Wartet! Mitspielerberiffe fehlen noch!' : ""
     respond_to do |format|
        format.html
-       format.json { render json: { words_left: @words_left, round: @round} }
+       format.json { render json: { words_left: @words_left, round: @game.round, counter_a: @game.counter_a, counter_b: @game.counter_b, check: @check} }
     end
   end
 
   def update
-    @game.increment!(:round)
-    @words = Word.where(game_id: params[:id])
-    @words.update(status: true)
-    redirect_to game_path(@game)
+    if game_params[:groupname] == 'c'
+     @game.increment!(:round)
+     @words = Word.where(game_id: params[:id])
+     @words.update(status: true)
+     redirect_to game_path(@game)
+    else
+      @game.update(groupname: game_params[:groupname])
+      redirect_to game_words_path(@game)
+    end
   end
 
   private
@@ -39,10 +43,10 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:name, :number, :id, :players)
+    params.require(:game).permit(:name, :number, :id, :players, :groupname)
   end
 
-  def set_counter
+  def set_words_left
     @words_left = Word.where(game_id: params[:id]).where(status: true)
   end
 end

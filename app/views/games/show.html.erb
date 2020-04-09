@@ -7,44 +7,53 @@
 
 
 
-
-
-    <% if @game.words.count < (@game.number * @game.players)%>
-      <div class="box">
-       <p><strong>Mitspielerberiffe fehlen noch!</strong></p>
-        <p><strong><%= (@game.number * @game.players) - @game.words.count%>/<%=(@game.number * @game.players)%></strong></p>
-      </div>
-    <% else %>
-
-    <div data-controller="counter">
-      <div class="box">
-           <p>Bergiffe noch im Topf</p>
+      <div data-controller="counter" >
+        <div class="box ">
+         <p><strong data-target="counter.check"></strong></p>
+        </div>
+        <div class="box">
+          <p>Bergiffe noch im Topf</p>
           <% if  @words_left != nil %>
             <p ><strong data-target="counter.count"><%= @words_left.count %></strong><strong>/<%=(@game.number * @game.players)%></strong></p>
           <% else %>
             <p><strong>0</strong></p>
           <% end %>
         </div>
-      <% end %>
+        <div class="box">
+          <p>Spielrunde</p>
+          <p><strong data-target="counter.round"><%= @game.round %></strong></p>
+        </div>
+        <div class="box">
+          <p>Punkte Gruppe A</p>
+          <p><strong data-target="counter.count_a"><%= @game.counter_a %></strong></p>
+        </div>
+        <div class="box">
+          <p>Punkte Gruppe B</p>
+          <p><strong data-target="counter.count_b"><%= @game.counter_b %></strong></p>
+        </div>
 
-      <div class="box">
-        <p>Spielrunde</p>
-        <p><strong data-target="counter.round"><%= @game.round %></strong></p>
+
+        <%= simple_form_for [@game] do |f| %>
+            <%= f.input :groupname,  :input_html => { :value => "a"}, as: :hidden%>
+            <%= f.submit 'Gruppe A spielt', class: 'button' %>
+          <% end %>
+
+         <%= simple_form_for [@game] do |f| %>
+            <%= f.input :groupname , :input_html => { :value => "b"}, as: :hidden%>
+            <%= f.submit 'Gruppe B spielt',class: 'button' %>
+          <% end %>
+
       </div>
+
+
+
+    <div class='next'>
+      <%= link_to root_path(@game) do %>
+         <p>Neues Spiel erstellen</p>
+      <% end %>
     </div>
 
 
-  <div class="button">
-  <%= link_to game_words_path(@game) do %>
-    Ich bin dran
-  <% end %>
-  </div>
-
-  <div class='next'>
-    <%= link_to root_path(@game) do %>
-       <p>Neues Spiel erstellen</p>
-    <% end %>
-  </div>
 
 </div>
 

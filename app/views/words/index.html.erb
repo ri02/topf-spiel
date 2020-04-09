@@ -10,6 +10,8 @@
     <div class="card">
       <h2><%= @word.text %></h2>
     </div>
+    <% else %>
+    <p>es sind keine Wörter mehr im Topf</p>
   <% end %>
 
 
@@ -24,10 +26,10 @@
       <% end %>
     </div>
   <% else %>
-      <%= simple_form_for [@game] do |f| %>
-        <%= f.input :id , value: 0, as: :hidden %>
-        <%= f.submit 'Neue Runde', class: 'button' %>
-      <% end %>
+    <%= simple_form_for [@game] do |f| %>
+      <%= f.input :groupname , :input_html => { :value => "c"}, as: :hidden%>
+      <%= f.submit 'Neue Runde',class: 'button' %>
+    <% end %>
   <% end %>
 
  </div>

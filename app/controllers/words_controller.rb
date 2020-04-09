@@ -29,6 +29,7 @@ class WordsController < ApplicationController
   def update
     @word = Word.find(word_params[:id])
     @word.update(status: false)
+    @game.groupname == 'a' ? @game.increment!(:counter_a) : @game.increment!(:counter_b)
     redirect_to game_words_path(@game)
   end
 
