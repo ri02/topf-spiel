@@ -33,14 +33,14 @@
               <%= link_to new_game_word_path(game) do %>
                 <div class="game">
                   <p><%= game.name %></p>
-                  <p><%= game.created_at.strftime("%D")%></p>
+                  <p><%= game.created_at.strftime("%d/%m/%Y")%></p>
                 </div>
               <% end %>
              <%else %>
                 <%= link_to game_path(game) do %>
                   <div class="game">
                     <p><%= game.name %></p>
-                    <p><%= game.created_at.strftime("%D")%></p>
+                    <p><%= game.created_at.strftime("%d/%m/%Y")%></p>
                   </div>
                 <% end %>
               <% end %>
