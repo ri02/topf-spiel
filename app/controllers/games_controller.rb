@@ -1,6 +1,8 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :update]
   before_action :set_words_left, only: [:show, :update]
+  before_action :set_game_round_description, only: [:show]
+
 
   def index
     @games = Game.all.order(created_at: :desc)
@@ -20,7 +22,7 @@ class GamesController < ApplicationController
     @check = ((@game.number * @game.players) > @game.words.count) ? 'Wartet! Mitspielerberiffe fehlen noch!' : ""
     respond_to do |format|
        format.html
-       format.json { render json: { words_left: @words_left, round: @game.round, counter_a: @game.counter_a, counter_b: @game.counter_b, check: @check} }
+       format.json { render json: { words_left: @words_left, round: @game_round_description, counter_a: @game.counter_a, counter_b: @game.counter_b, check: @check} }
     end
   end
 
@@ -49,4 +51,23 @@ class GamesController < ApplicationController
   def set_words_left
     @words_left = Word.where(game_id: params[:id]).where(status: true)
   end
+
+  def set_game_round_description
+    case @game.round
+     when 1
+      @game_round_description = 'Erklären'
+     when 2
+      @game_round_description = 'Panthomime'
+     when 3
+      @game_round_description = 'Ein Wort'
+     when 4
+      @game_round_description = 'Geräusche'
+     else
+      @game_round_description = 'Spielende'
+    end
+  end
+
+
+
+
 end

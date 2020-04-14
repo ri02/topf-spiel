@@ -1,6 +1,8 @@
 class WordsController < ApplicationController
   before_action :set_game
   before_action :set_words , only: [:new, :create]
+  before_action :set_description , only: [:index]
+
 
   def index
     @words = Word.where(game_id: params[:game_id]).where(status: true)
@@ -55,5 +57,20 @@ class WordsController < ApplicationController
 
   def word_params
     params.require(:word).permit(:id, text:[])
+  end
+
+  def set_description
+    case @game.round
+     when 1
+      @description = 'Erklären den folgenden Bergiff'
+     when 2
+      @description = 'Stelle den folgenden Bergiff panthomimisch dar'
+     when 3
+      @description = 'Du darfst den folgenden Begriff mit einem Wort beschreiben. Das Wort darf nicht mehr geändert werden'
+     when 4
+      @description = 'Beschreibe den Begriff mit (verschiedenen) Geräuschen'
+     else
+      @description = 'Spiel beendet'
+    end
   end
 end
