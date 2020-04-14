@@ -18,9 +18,13 @@
   border-bottom: 3px solid #555555;
 }
 
+.game{
+margin: 1rem 16px ;
 
-.game {
-  margin: 1rem 16px;
+}
+
+.game-item {
+  margin: 1rem 0px;
   display: flex;
   justify-content: space-between;
   p {

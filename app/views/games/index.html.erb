@@ -12,39 +12,47 @@
 
      <nav>
        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-         <a class="nav-item nav-link active" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="true">Neues Spiel</a>
-         <a class="nav-item nav-link" id="nav-old-tab" data-toggle="tab" href="#nav-old" role="tab" aria-controls="nav-old" aria-selected="false">Mache mit</a>
+         <a class="nav-item nav-link active " id="nav-old-tab" data-toggle="tab" href="#nav-old" role="tab" aria-controls="nav-old" aria-selected="false">Mitspielen</a>
+         <a class="nav-item nav-link " id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="true">Spiel erstellen</a>
        </div>
      </nav>
      <div class="tab-content" id="nav-tabContent">
-       <div class="tab-pane fade show active" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
 
+       <div class="tab-pane fade show active" id="nav-old" role="tabpanel" aria-labelledby="nav-old-tab">
+        <div class="game">
+          <p>Wenn ein Mitspieler schon ein neues Spiel erstellt hat, dann wähle es hier aus um mitzuspielen</p>
+           <% unless @games.nil? %>
+           <div class="game-item">
+             <p><strong>Spielname</strong></p>
+             <p><strong>erstellt am</strong></p>
+           </div>
+             <% @games.each do |game|%>
+              <% if game.words.count < (game.number * game.players)%>
+                <%= link_to new_game_word_path(game) do %>
+                  <div class="game-item">
+                    <p><%= game.name %></p>
+                    <p><%= game.created_at.strftime("%d/%m/%Y")%></p>
+                  </div>
+                <% end %>
+               <%else %>
+                  <%= link_to game_path(game) do %>
+                    <div class="game-item">
+                      <p><%= game.name %></p>
+                      <p><%= game.created_at.strftime("%d/%m/%Y")%></p>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+           <% end %>
+        </div>
+       </div>
+
+       <div class="tab-pane fade " id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
          <%= simple_form_for(@game) do |f| %>
            <%= f.input :name, label: 'Spielname' %>
            <%= f.input :players, label: 'Anzahl der Spieler'  %>
            <%= f.input :number, label: 'Anzahl der Begiffe pro Spieler'  %>
            <%= f.submit 'Spiel erstellen', class: 'button' %>
-         <% end %>
-       </div>
-       <div class="tab-pane fade" id="nav-old" role="tabpanel" aria-labelledby="nav-old-tab">
-         <% unless @games.nil? %>
-           <% @games.each do |game|%>
-            <% if game.words.count < (game.number * game.players)%>
-              <%= link_to new_game_word_path(game) do %>
-                <div class="game">
-                  <p><%= game.name %></p>
-                  <p><%= game.created_at.strftime("%d/%m/%Y")%></p>
-                </div>
-              <% end %>
-             <%else %>
-                <%= link_to game_path(game) do %>
-                  <div class="game">
-                    <p><%= game.name %></p>
-                    <p><%= game.created_at.strftime("%d/%m/%Y")%></p>
-                  </div>
-                <% end %>
-              <% end %>
-            <% end %>
          <% end %>
        </div>
      </div>
