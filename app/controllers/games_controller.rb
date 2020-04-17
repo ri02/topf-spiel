@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :update]
+  before_action :set_game, only: [:show, :update, :timer]
   before_action :set_words_left, only: [:show, :update]
   before_action :set_game_round_description, only: [:show]
 
@@ -38,6 +38,9 @@ class GamesController < ApplicationController
     end
   end
 
+  def timer
+  end
+
   private
 
   def set_game
@@ -66,8 +69,4 @@ class GamesController < ApplicationController
       @game_round_description = 'Spielende'
     end
   end
-
-
-
-
 end

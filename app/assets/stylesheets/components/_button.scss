@@ -21,16 +21,21 @@
   opacity: 1;
 }
 
-.next {
+.button:active{
+  transform: scale(1.1);
+  background-color: #ffc600;
+  border: 1px solid #3a424a !important;
+}
 
+.next {
   width: 100%;
   a{
   text-decoration: underline;
   color: black;
     }
   p{
-        text-align: right;
-        margin-top: 20px;
+    text-align: right;
+    margin-top: 20px;
     }
 }
 

@@ -1,13 +1,20 @@
 function timer_all () {
 
-let countdown
-const timerDisplay = document.querySelector('.time-left')
+let countdown;
+const timerDisplay = document.querySelector('.time-left');
+const button = document.querySelector('[data-time]');
+button.addEventListener('click', startTimer);
 
+document.customForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  const seconds = this.seconds.value;
+  timer(seconds);
+  this.reset();
+})
 
-
-timer(4);
 
 function timer (seconds){
+  clearInterval(countdown);
   const now = Date.now();
   const then = now + seconds *1000;
   displayTimeLeft(seconds)
@@ -40,6 +47,14 @@ function playAlarm (){
     if (!audio) return;
     audio.currentTime = 0;
     audio.play();
+}
+
+
+function startTimer (){
+  const seconds = parseInt(this.dataset.time);
+  timer(seconds)
+
+
 }
 
 

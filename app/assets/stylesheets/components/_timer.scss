@@ -1,0 +1,35 @@
+.timer{
+  text-align: center;
+  margin: 30px;
+}
+.fa-redo:before{
+  color: black;
+}
+
+.input {
+
+    color: black;
+    border: 1px solid #3a424a;
+    padding: 8px 24px;
+    border-radius: 1px;
+
+    opacity: 0.9;
+    width: 100%;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    background-color: white;
+    margin: 1rem 0;
+    font-size: 20px;
+    a{
+      color: black;
+      text-decoration: none;
+    }
+
+}
+
+.timer-box{
+  p{
+    margin: 0px;
+    text-align: center;
+  }
+}

@@ -43,8 +43,15 @@
             <%= f.input :groupname , :input_html => { :value => "b"}, as: :hidden%>
             <%= f.submit 'Gruppe B spielt',class: 'button' %>
           <% end %>
-
       </div>
+
+
+
+    <div class='next'>
+      <%= link_to timer_path(@game) do %>
+         <p>Zum Timer</p>
+      <% end %>
+    </div>
 
 
 

@@ -1,0 +1,28 @@
+<div class="container ">
+
+  <div class="head">
+    <h1>TOPFSPIEL</h1>
+    <p>Timer</p>
+  </div>
+
+  <div class="display timer">
+    <h1 class="time-left">00:00</h1>
+  </div>
+
+ <div class="timer-box">
+    <button data-time="60" class= 'button'> 1 Minute </button>
+    <p>oder</p>
+    <form name="customForm" id='custom_form'>
+      <input class = 'input' type="text" name='seconds' placeholder='Gib Sekunden ein'>
+    </form>
+  </div>
+
+
+
+
+  <div class='next'>
+    <%= link_to game_path(@game) do %>
+        <p>zurück zur Spielübersicht</p>
+    <% end %>
+  </div>
+</div>
