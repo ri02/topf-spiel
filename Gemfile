@@ -5,7 +5,7 @@ gem 'bootsnap', require: false
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
-gem 'rails', '6.0.2.2'
+gem 'rails', '>=6.0.2.2'
 gem 'redis'
 
 gem 'autoprefixer-rails'
@@ -14,6 +14,7 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+
 
 
 group :development do
