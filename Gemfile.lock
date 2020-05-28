@@ -196,9 +196,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionpack (>= 6.0.3.1)
-  activestorage (>= 6.0.3.1)
-  activesupport (>= 6.0.3.1)
   autoprefixer-rails
   bootsnap
   dotenv-rails
